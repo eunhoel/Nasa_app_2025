@@ -1,0 +1,209 @@
+:root{
+  --bg: #0f1115;
+  --panel: #151821;
+  --panel-2: #1a1f2d;
+  --text: #e6e7eb;
+  --muted: #9aa3b2;
+  --accent: #6ea8fe;
+  --border: #2a3040;
+  --ring: rgba(110,168,254,0.35);
+}
+
+/* ===== 헤더 (왼쪽 상단 고정) ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0; /* 변경된 부분 */
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.6); /* #0f172a 반투명 */
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 0 0 12px 0; /* 왼쪽 상단만 둥글게 */
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav--right { 
+  justify-content: flex-start; /* 왼쪽으로 정렬 */
+}
+
+
+.nav-link {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover { color: #38bdf8; }
+
+.nav-link[aria-current="page"] { color: #facc15; }
+
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* 레이아웃 */
+.app{
+  display:flex;
+  height:100vh;
+  width:100%;
+}
+
+/* 지도 75% */
+.map-pane{
+  flex: 3 1 0; /* 3:1 비율 → 75% */
+  min-width: 0;
+  border-right: 1px solid var(--border);
+}
+gmp-map{
+  display:block;
+  height: 100%;
+  width: 100%;
+}
+
+/* 패널 25% */
+.control-pane{
+  flex: 1 1 320px; /* 25% 영역, 최소 320px */
+  max-width: 560px;
+  padding: 20px 18px 24px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  overflow:auto;
+}
+
+.panel-header h1{
+  margin:0 0 6px 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.muted{ color: var(--muted); margin:0 0 12px; }
+
+/* 폼 */
+.form{
+  display:grid;
+  gap: 14px;
+  margin-top: 6px;
+}
+.field{ display:flex; flex-direction:column; gap:6px; }
+label{ font-weight:600; }
+input[type="number"], select{
+  appearance:none;
+  background:#0f1320;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px 12px;
+  color:var(--text);
+  outline:none;
+}
+input[type="number"]:focus, select:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+.hint{ color: var(--muted); font-size:12px; }
+
+/* 버튼 */
+.actions{ display:flex; gap:10px; margin-top:4px; }
+.btn{
+  appearance:none;
+  border:1px solid var(--border);
+  background:#101524;
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn:hover{ border-color:#3a4257; }
+.btn.primary{
+  background: linear-gradient(180deg, #2a6bff, #1b4fcc);
+  border-color: transparent;
+}
+.btn.primary:hover{ filter: brightness(1.05); }
+
+/* 상태/결과 */
+.status{
+  margin-top:16px;
+  padding:10px 12px;
+  border:1px dashed var(--border);
+  border-radius:10px;
+  color: var(--muted);
+}
+.results{ margin-top:12px; }
+
+/* 반응형: 좁은 화면에서는 위/아래로 쌓기 */
+@media (max-width: 1024px){
+  .app{ flex-direction:column; }
+  .map-pane{ height: 55vh; border-right: none; border-bottom:1px solid var(--border); }
+  .control-pane{ height: 45vh; }
+}
+
+/* --- Results Layout --- */
+#results {
+  padding: 12px;
+}
+
+.results-header {
+  display: flex; 
+  flex-wrap: wrap;
+  align-items: center; 
+  gap: 8px 12px; 
+  margin-bottom: 12px;
+}
+.results-title {
+  font-size: 1.1rem; 
+  font-weight: 700;
+  color: white
+}
+.chips {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 6px;
+}
+.chip {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px;
+  padding: 4px 8px; 
+  border-radius: 999px; 
+  font-size: 0.85rem; 
+  line-height: 1; 
+  background: #f1f5f9; 
+  color: #0f172a; 
+  border: 1px solid #e2e8f0;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* Contrast fix for cards on dark background */
+.card {
+  background: #ffffff;
+  color: #0f172a;            /* force dark text */
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  padding: 14px;
+}
+.card h3 { color:#0f172a; }
+
+.metrics { display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; }
+.metric b { color:#334155; font-weight:600; font-size:0.9rem; }
+.metric .val { color:#0f172a; font-weight:700; font-variant-numeric: tabular-nums; }
+
+.kv { display:grid; grid-template-columns: 140px 1fr; gap:6px 8px; }
+.kv .k { color:#475569; font-weight:600; font-size:0.9rem; }
+.kv .v { color:#0f172a; font-weight:700; font-variant-numeric: tabular-nums; }
+

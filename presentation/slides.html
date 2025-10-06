@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Asteroid Lab — Presentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="page page-slides">
+
+  <!-- 오른쪽 상단 헤더 -->
+  <header class="site-header" role="navigation" aria-label="Global">
+    <nav class="nav nav--right">
+        <a class="nav-link" href="../solar-system3D-main/index.html">3D view</a>
+        <a class="nav-link" href="../launcher/index.html">simulator</a>
+        <a class="nav-link" href="./slides.html" aria-current="page">presentation</a>
+
+    </nav>
+  </header>
+
+  <!-- 슬라이드 컨테이너 -->
+  <main class="slides-container" aria-label="Slides">
+    <!-- 슬라이드 섹션들 (이미지 직접 나열) -->
+    <section class="slide"><img class="slide-img" src="./assets/slide1.png" alt="Slide 1" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide2.png" alt="Slide 2" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide3.png" alt="Slide 3" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide4.png" alt="Slide 4" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide5.png" alt="Slide 5" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide6.png" alt="Slide 6" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide7.png" alt="Slide 7" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide8.png" alt="Slide 8" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide9.png" alt="Slide 9" /></section>
+    <section class="slide"><img class="slide-img" src="./assets/slide10.png" alt="Slide 10" /></section>
+
+    <!-- 필요에 따라 계속 추가 -->
+  </main>
+
+  <script>
+    // 키보드로 슬라이드 넘기기 (↓ ↑)
+    document.addEventListener('keydown', e=>{
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        window.scrollBy({ top: vh, behavior: 'smooth' });
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        window.scrollBy({ top: -vh, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
